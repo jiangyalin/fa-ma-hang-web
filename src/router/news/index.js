@@ -1,5 +1,5 @@
 import index from './../../components/news/index.vue'
-import login from './../../page/login/login/login.vue'
+import news from './../../page/news/news/newsList.vue'
 
 export default {
   path: '/:lang/news',
@@ -15,7 +15,7 @@ export default {
     },
     {
       path: 'news/newsList',
-      component: login
+      component: news
     }
   ]
 }
