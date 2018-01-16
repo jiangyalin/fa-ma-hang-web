@@ -35,12 +35,23 @@
     data () {
       return {
         nav: {
-          text: '首页',
-          name: 'Home',
+          text: '新闻管理',
+          name: '/news',
           active: '1-1',
           uniqueOpened: true
         },
-        navData: []
+        navData: [{
+          text: '新闻管理',
+          name: 'news',
+          path: '/news/news',
+          index: '1',
+          node: [{
+            text: '新闻列表',
+            name: 'news',
+            path: '/news/news/newsList',
+            index: '1-1'
+          }]
+        }]
       }
     },
     components: {},
@@ -59,10 +70,10 @@
         // 计算面包屑导航
         let crumb = []
         const node1 = {
-          text: '运营中心',
-          name: 'app',
-          path: '/operateCenter/propertyList',
-          index: '1'
+          text: '新闻管理',
+          name: 'news',
+          path: '/news',
+          index: '0'
         }
         crumb.push(node1)
         let crumbActive = (nav, path) => {
@@ -89,61 +100,6 @@
     },
     beforeCreate: () => {},
     created: function () {
-      const operateNav = [{
-        text: '账户',
-        name: 'account',
-        path: '/systemManagement/account',
-        index: '2',
-        node: [{
-          text: '账户信息',
-          name: 'accountList',
-          path: '/systemManagement/account/accountList',
-          index: '2-1',
-          node: [{
-            text: '账户编辑',
-            name: 'accountEdit',
-            path: '/systemManagement/account/accountList/accountEdit/' + this.$route.params.accountId,
-            index: '2-1-1'
-          }]
-        }, {
-          text: '添加账户',
-          name: 'accountAdd',
-          path: '/systemManagement/account/accountAdd',
-          index: '2-2'
-        }, {
-          text: '业主信息',
-          name: 'groupList',
-          path: '/systemManagement/account/groupList',
-          index: '2-3',
-          node: [{
-            text: '业主信息编辑',
-            name: 'groupEdit',
-            path: '/systemManagement/account/groupList/groupEdit/' + this.$route.params.accountId,
-            index: '2-3-1'
-          }]
-        }]
-      }]
-      const ownerNav = [{
-        text: '账户',
-        name: 'account',
-        path: '/systemManagement/account',
-        index: '2',
-        node: [{
-          text: '账户编辑',
-          name: 'accountEdit',
-          path: '/systemManagement/account/accountList/accountEdit/' + this.$route.params.accountId,
-          index: '2-1-1'
-        }]
-      }]
-
-      // 判断用户类型
-      if (this.$cookie.get('userType') === '0') {
-        this.navData = operateNav
-      }
-      if (this.$cookie.get('userType') === '1') {
-        this.navData = ownerNav
-      }
-
       // 初始化激活
       let active = ''
       const path = this.$route.path
@@ -159,10 +115,10 @@
       // 计算面包屑导航
       let crumb = []
       const node1 = {
-        text: '系统管理',
-        name: 'systemManagement',
-        path: '/systemManagement',
-        index: '1'
+        text: '新闻管理',
+        name: 'news',
+        path: '/news',
+        index: '0'
       }
       crumb.push(node1)
       let crumbActive = (nav, path) => {
@@ -188,62 +144,7 @@
     },
     watch: {
       $route: function () {
-        const operateNav = [{
-          text: '账户',
-          name: 'account',
-          path: '/systemManagement/account',
-          index: '2',
-          node: [{
-            text: '账户列表',
-            name: 'accountList',
-            path: '/systemManagement/account/accountList',
-            index: '2-1',
-            node: [{
-              text: '账户编辑',
-              name: 'accountEdit',
-              path: '/systemManagement/account/accountList/accountEdit/' + this.$route.params.accountId,
-              index: '2-1-1'
-            }]
-          }, {
-            text: '添加账户',
-            name: 'accountAdd',
-            path: '/systemManagement/account/accountAdd',
-            index: '2-2'
-          }, {
-            text: '业主信息',
-            name: 'groupList',
-            path: '/systemManagement/account/groupList',
-            index: '2-3',
-            node: [{
-              text: '业主信息编辑',
-              name: 'groupEdit',
-              path: '/systemManagement/account/groupList/groupEdit/' + this.$route.params.accountId,
-              index: '2-3-1'
-            }]
-          }]
-        }]
-        const ownerNav = [{
-          text: '账户',
-          name: 'account',
-          path: '/systemManagement/account',
-          index: '2',
-          node: [{
-            text: '账户编辑',
-            name: 'accountEdit',
-            path: '/systemManagement/account/accountList/accountEdit/' + this.$route.params.accountId,
-            index: '2-1-1'
-          }]
-        }]
-
-        // 判断用户类型
-        if (this.$cookie.get('userType') === '0') {
-          this.navData = operateNav
-        }
-        if (this.$cookie.get('userType') === '1') {
-          this.navData = ownerNav
-        }
-
-        // 初始化激活
+        // 初始化激c活
         let active = ''
         const path = this.$route.path
         this.navData.forEach((result) => {
@@ -258,10 +159,10 @@
         // 计算面包屑导航
         let crumb = []
         const node1 = {
-          text: '系统管理',
-          name: 'systemManagement',
-          path: '/systemManagement',
-          index: '1'
+          text: '新闻管理',
+          name: 'news',
+          path: '/news',
+          index: '0'
         }
         crumb.push(node1)
         let crumbActive = (nav, path) => {

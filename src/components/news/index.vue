@@ -5,11 +5,11 @@
         <topHeader></topHeader>
       </el-header>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="200px" v-if="homeShowState === 'true'">
           <navs @navDataTransfer="getNavData"></navs>
         </el-aside>
         <el-container direction="vertical">
-          <crumb :crumbs="crumb"></crumb>
+          <crumb :crumbs="crumb" v-if="homeShowState === 'true'"></crumb>
           <div class="el-main">
             <div class="g-main">
               <router-view/>
@@ -29,6 +29,7 @@
     name: 'app',
     data () {
       return {
+        homeShowState: 'true',
         crumb: []
       }
     },
@@ -40,6 +41,13 @@
     methods: {
       getNavData: function (msg) {
         this.crumb = msg
+      }
+    },
+    created: function () {
+      if (this.$route.path.indexOf('/home/home/home') !== -1) {
+        this.homeShowState = 'false'
+      } else {
+        this.homeShowState = 'true'
       }
     }
   }

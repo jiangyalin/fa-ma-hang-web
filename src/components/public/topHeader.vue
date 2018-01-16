@@ -1,7 +1,10 @@
 <template>
   <div class="m-hd">
-    <div class="u-name"></div>
-    <el-menu :default-active="openNav" class="el-menu-demo u-menu" mode="horizontal">
+    <div class="u-name">发码行后台管理</div>
+    <el-menu
+      :default-active="openNav"
+      class="el-menu-demo u-menu"
+      mode="horizontal">
       <el-menu-item
         v-for="item in navData"
         :index="item.index"
@@ -44,20 +47,10 @@
           path: '/home',
           index: '1'
         }, {
-          text: '运营中心',
-          name: 'operateCenter',
-          path: '/operateCenter',
+          text: '新闻管理',
+          name: 'news',
+          path: '/news',
           index: '2'
-        }, {
-          text: '财务中心',
-          name: 'financialCenter',
-          path: '/financialCenter',
-          index: '3'
-        }, {
-          text: '系统管理',
-          name: 'systemManagement',
-          path: '/systemManagement',
-          index: '4'
         }]
       }
     },
@@ -130,10 +123,5 @@
   }
   .u-icon{
     color: #dcdcdc;
-  }
-
-  .u-name{
-    background: url(./../../assets/images/home/logo.png) no-repeat center center;
-    text-indent:-9999px;
   }
 </style>
