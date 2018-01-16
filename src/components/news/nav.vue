@@ -49,7 +49,23 @@
             text: '新闻列表',
             name: 'news',
             path: '/news/news/newsList',
-            index: '1-1'
+            index: '1-1',
+            node: [{
+              text: '新闻详情',
+              name: 'news',
+              path: '/news/news/newsList/newsInfo/' + this.$route.params.newsId,
+              index: '1-1-1'
+            }, {
+              text: '新闻详情',
+              name: 'news',
+              path: '/news/news/newsList/newsEdit/' + this.$route.params.newsId,
+              index: '1-1-2'
+            }]
+          }, {
+            text: '添加新闻',
+            name: 'news',
+            path: '/news/news/newsAdd',
+            index: '1-2'
           }]
         }]
       }

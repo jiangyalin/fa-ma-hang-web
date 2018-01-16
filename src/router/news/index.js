@@ -1,5 +1,8 @@
 import index from './../../components/news/index.vue'
-import news from './../../page/news/news/newsList.vue'
+import newsList from './../../page/news/news/newsList.vue'
+import newsAdd from './../../page/news/news/newsAdd.vue'
+import newsEdit from './../../page/news/news/newsEdit.vue'
+import newsInfo from './../../page/news/news/newsInfo.vue'
 
 export default {
   path: '/:lang/news',
@@ -15,7 +18,19 @@ export default {
     },
     {
       path: 'news/newsList',
-      component: news
+      component: newsList
+    },
+    {
+      path: 'news/newsList/newsInfo/:newsId',
+      component: newsInfo
+    },
+    {
+      path: 'news/newsList/newsEdit/:newsId',
+      component: newsEdit
+    },
+    {
+      path: 'news/newsAdd',
+      component: newsAdd
     }
   ]
 }

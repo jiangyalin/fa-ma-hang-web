@@ -14,15 +14,11 @@
     </el-menu>
     <div class="u-user">
       <div class="u-menu" background-color="#292d38">
-        <lang></lang>
         <el-tooltip
           class="item"
           effect="dark"
           :content="userInfo.name"
           placement="top-start">
-          <div index="1" class="u-user-li">
-            <i class="fa fa-user u-icon"></i>
-          </div>
         </el-tooltip>
         <div index="4" class="u-user-li" @click="signOut">
           <i class="fa fa-power-off u-icon"></i>
@@ -32,7 +28,6 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import Lang from './lang.vue'
   export default {
     name: 'topHeader',
     data () {
@@ -53,9 +48,6 @@
           index: '2'
         }]
       }
-    },
-    components: {
-      lang: Lang
     },
     computed: {
       openNav () {
