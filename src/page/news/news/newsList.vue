@@ -183,16 +183,16 @@
     },
     created: function () {
       // 获取用户列表
-      const AccountList = GetAccountList(this)
-
-      AccountList.then((resolve) => {
-        const list = List(resolve)
-        this.tableData = list.tableData
-        this.formInline.total = list.total
-        this.loading = false
-      }).catch((reject) => {
-        window.publicFunction.error(reject)
-      })
+//      const AccountList = GetAccountList(this)
+//
+//      AccountList.then((resolve) => {
+//        const list = List(resolve)
+//        this.tableData = list.tableData
+//        this.formInline.total = list.total
+//        this.loading = false
+//      }).catch((reject) => {
+//        window.publicFunction.error(reject)
+//      })
     }
   }
 </script>

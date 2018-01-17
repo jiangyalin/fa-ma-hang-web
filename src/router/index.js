@@ -31,15 +31,20 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     const token = VueCookie.get('token') || ''
-    const userType = VueCookie.get('userType') || '' // 用户类型
     const user = VueCookie.get('user') || '' // 用户名
     // 判断登陆
-    if (token === '' || user === '' || userType === '') {
+    if (token === '' || user === '') {
       next({
         path: '/zh-cn/login/login/login'
       })
     } else {
-      next()
+      if (user !== 'admin') {
+        next({
+          path: '/zh-cn/login/login/login'
+        })
+      } else {
+        next()
+      }
     }
   } else {
     next()

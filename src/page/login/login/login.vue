@@ -50,44 +50,44 @@
 
 <script type="text/ecmascript-6">
   // 用户登录
-  const LoginAccount = vue => {
-    const login = new Promise((resolve, reject) => {
-      vue.$http({
-        method: 'post',
-        url: window.config.serverLogin + '/api/auth/login',
-        data: {
-          username: vue.ruleForm.userName,
-          password: vue.ruleForm.pwd
-        },
-        headers: {
-          'languageCode': vue.$route.params.lang
-        }
-      }).then((response) => {
-        resolve(response)
-      }).catch((error) => {
-        reject(error)
-      })
-    })
-    return login
-  }
-  // 获取用户详细信息
-  const GetUserInfo = vue => {
-    const userInfo = new Promise((resolve, reject) => {
-      vue.$http({
-        method: 'get',
-        url: window.config.serverLogin + '/api/me',
-        headers: {
-          'languageCode': vue.$route.params.lang,
-          'Authorization': 'Bearer ' + vue.$cookie.get('token')
-        }
-      }).then((response) => {
-        resolve(response)
-      }).catch((error) => {
-        reject(error)
-      })
-    })
-    return userInfo
-  }
+//  const LoginAccount = vue => {
+//    const login = new Promise((resolve, reject) => {
+//      vue.$http({
+//        method: 'post',
+//        url: window.config.serverLogin + '/api/auth/login',
+//        data: {
+//          username: vue.ruleForm.userName,
+//          password: vue.ruleForm.pwd
+//        },
+//        headers: {
+//          'languageCode': vue.$route.params.lang
+//        }
+//      }).then((response) => {
+//        resolve(response)
+//      }).catch((error) => {
+//        reject(error)
+//      })
+//    })
+//    return login
+//  }
+//  // 获取用户详细信息
+//  const GetUserInfo = vue => {
+//    const userInfo = new Promise((resolve, reject) => {
+//      vue.$http({
+//        method: 'get',
+//        url: window.config.serverLogin + '/api/me',
+//        headers: {
+//          'languageCode': vue.$route.params.lang,
+//          'Authorization': 'Bearer ' + vue.$cookie.get('token')
+//        }
+//      }).then((response) => {
+//        resolve(response)
+//      }).catch((error) => {
+//        reject(error)
+//      })
+//    })
+//    return userInfo
+//  }
   export default {
     name: '',
     data () {
@@ -138,34 +138,41 @@
             this.ruleForm.userName = this.$refs.username.value
             this.ruleForm.pwd = this.$refs.pwd.value
             // 登录用户
-            const Login = LoginAccount(this)
-
-            Login.then((resolve) => {
-              this.$cookie.set('token', resolve.data.token, 7)
-
-              const UserInfo = GetUserInfo(this)
-
-              UserInfo.then((resolve) => {
-                if (resolve.data.userType === 'PLATFORM') { // 运营
-                  this.$cookie.set('userType', '0', 1)
-                  this.$cookie.set('user', resolve.data.username, 1)
-                  let redirect = this.$route.query.redirect || '/'
-                  redirect = '/'
-                  this.$router.push(redirect)
-                }
-                if (resolve.data.userType === 'OPERATOR') { // 业主
-                  this.$cookie.set('userType', '1', 1)
-                  this.$cookie.set('user', resolve.data.username, 1)
-                  let redirect = this.$route.query.redirect || '/'
-                  redirect = '/'
-                  this.$router.push(redirect)
-                }
-              }).catch((reject) => {
-                window.publicFunction.error(reject)
-              })
-            }).catch((reject) => {
-              window.publicFunction.error(reject)
-            })
+            if (this.ruleForm.userName === 'admin') {
+              this.$cookie.set('user', this.ruleForm.userName, 1)
+              this.$router.push('/' + this.$route.params.lang + '/news/news/newsList')
+              console.log('ppp')
+            } else {
+              alert('用户名或密码错误')
+            }
+//            const Login = LoginAccount(this)
+//
+//            Login.then((resolve) => {
+//              this.$cookie.set('token', resolve.data.token, 7)
+//
+//              const UserInfo = GetUserInfo(this)
+//
+//              UserInfo.then((resolve) => {
+//                if (resolve.data.userType === 'PLATFORM') { // 运营
+//                  this.$cookie.set('userType', '0', 1)
+//                  this.$cookie.set('user', resolve.data.username, 1)
+//                  let redirect = this.$route.query.redirect || '/'
+//                  redirect = '/'
+//                  this.$router.push(redirect)
+//                }
+//                if (resolve.data.userType === 'OPERATOR') { // 业主
+//                  this.$cookie.set('userType', '1', 1)
+//                  this.$cookie.set('user', resolve.data.username, 1)
+//                  let redirect = this.$route.query.redirect || '/'
+//                  redirect = '/'
+//                  this.$router.push(redirect)
+//                }
+//              }).catch((reject) => {
+//                window.publicFunction.error(reject)
+//              })
+//            }).catch((reject) => {
+//              window.publicFunction.error(reject)
+//            })
           } else {
             console.log('error submit!!')
             return false
